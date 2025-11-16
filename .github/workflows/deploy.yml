@@ -14,6 +14,9 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: ${{ steps.deploy.outputs.deployment-url }}
 
     steps:
       - name: Checkout repository
@@ -68,9 +71,14 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy public --project-name=your-project-name
+          command: pages deploy public --project-name=imsus-dev
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           packageManager: pnpm
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          # Environment-specific variables
+          HUGO_ENVIRONMENT: production
+          NODE_ENV: production
 
       - name: Output deployment URL
         if: success()
