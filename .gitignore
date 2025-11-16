@@ -2,6 +2,11 @@
 /public/
 /resources/_gen/
 
+# Vite build artifacts (processed CSS/JS)
+/static/main.css
+/static/main.js
+/static/dist/
+
 # Hugo lock file
 .hugo_build.lock
 
