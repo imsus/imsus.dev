@@ -1,0 +1,26 @@
+{
+  "name": "2025-11-16-hugo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently -k -n HUGO,VITE -c cyan,magenta \"pnpm dev:hugo\" \"pnpm dev:vite\"",
+    "dev:hugo": "hugo server -D",
+    "dev:vite": "vite",
+    "build": "pnpm build:vite && pnpm build:hugo",
+    "build:vite": "vite build",
+    "build:hugo": "hugo --minify",
+    "preview": "pnpm build && serve public -l 1337"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.20.0",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "concurrently": "^9.2.1",
+    "serve": "^14.2.5",
+    "tailwindcss": "^4.1.17",
+    "vite": "^7.2.2"
+  }
+}

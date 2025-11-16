@@ -1,0 +1,39 @@
+# Set base URL for different deployment environments
+# Update this to your final custom domain or Cloudflare Pages URL
+baseURL = 'https://example.org/'
+
+# For Cloudflare Pages deployment, use one of these formats:
+# baseURL = 'https://your-project.pages.dev/'                    # Default Cloudflare Pages URL
+# baseURL = 'https://yourdomain.com/'                          # Your custom domain
+languageCode = 'en-us'
+title = 'My Modern Hugo Site'
+
+[params]
+  # Enable latest posts section on homepage
+  latest_posts = true
+  # Vite dev server URL for development
+  viteDevUrl = "http://localhost:5173"
+
+  # Features for homepage
+  [[params.features]]
+    icon = "⚡"
+    title = "Lightning Fast"
+    description = "Built with Hugo, one of the fastest static site generators."
+
+  [[params.features]]
+    icon = "🎨"
+    title = "Modern Design"
+    description = "Styled with Tailwind CSS 4 and Vite for a modern development experience."
+
+  [[params.features]]
+    icon = "📱"
+    title = "Responsive"
+    description = "Mobile-first design that looks great on all devices."
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = 'github'
+    lineNos = true

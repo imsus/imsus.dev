@@ -1,0 +1,1 @@
+console.log("Hugo + Vite + Tailwind CSS 4 - Modern static site development!");document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",o=>{o.preventDefault();const t=document.querySelector(e.getAttribute("href"));t&&t.scrollIntoView({behavior:"smooth"})})})});
