@@ -14,7 +14,7 @@ title = 'My Modern Hugo Site'
   # Vite dev server URL for development
   viteDevUrl = "http://localhost:5173"
 
-  # Features for homepage
+  # Features for homepage (keeping these for backward compatibility)
   [[params.features]]
     icon = "⚡"
     title = "Lightning Fast"

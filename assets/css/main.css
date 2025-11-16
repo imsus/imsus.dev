@@ -1,3 +1,7 @@
 @import 'tailwindcss';
 
 @source "../layouts/**/*.{html,tmpl}", "../content/**/*.{md,html}";
+
+@theme {
+    --font-sans: "Stack Sans Text", sans-serif;
+}
