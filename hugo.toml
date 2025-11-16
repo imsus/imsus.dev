@@ -1,6 +1,6 @@
 # Set base URL for different deployment environments
 # Update this to your final custom domain or Cloudflare Pages URL
-baseURL = 'https://example.org/'
+baseURL = 'https://www.imsus.dev/'
 
 # For Cloudflare Pages deployment, use one of these formats:
 # baseURL = 'https://your-project.pages.dev/'                    # Default Cloudflare Pages URL
