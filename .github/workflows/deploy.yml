@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   deployments: write
 
 jobs:
@@ -61,49 +61,6 @@ jobs:
           ls -la public/
           echo "📊 Build size:"
           du -sh public/
-
-      - name: Detect changes and decide version bump
-        id: changes
-        run: |
-          # Get changed files between current and previous commit
-          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
-
-          # Check if template/app files changed
-          TEMPLATE_CHANGED=false
-          if echo "$CHANGED_FILES" | grep -E "^(assets|layouts|static|hugo\.toml|package\.json|pnpm-lock\.yaml|vite\.config\.js|\.github)"; then
-            TEMPLATE_CHANGED=true
-            echo "🔄 Template/app changes detected"
-            echo "📦 Version bump required"
-          else
-            echo "📝 Only content changes detected"
-            echo "🚫 No version bump needed"
-          fi
-
-          echo "template_changed=$TEMPLATE_CHANGED" >> $GITHUB_OUTPUT
-
-          # Show changed files for debugging
-          echo "🔍 Changed files:"
-          echo "$CHANGED_FILES"
-
-      - name: Bump version for template changes
-        if: steps.changes.outputs.template_changed == 'true' && github.ref == 'refs/heads/main'
-        run: |
-          echo "🔢 Bumping version for template changes..."
-
-          # Get current version from package.json
-          CURRENT_VERSION=$(node -p "require('./package.json').version")
-          echo "Current version: $CURRENT_VERSION"
-
-          # Bump patch version (you can change to minor/major if needed)
-          NEW_VERSION=$(npm version patch --no-git-tag-version)
-          echo "New version: $NEW_VERSION"
-
-          # Commit version bump
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add package.json
-          git commit -m "chore: bump version to $NEW_VERSION"
-          git push
 
       - name: Deploy to Cloudflare Pages
         id: deploy
