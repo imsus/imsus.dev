@@ -1,0 +1,10 @@
+{{- $viteDevUrl := .Site.Params.viteDevUrl | default "http://localhost:5173" -}}
+
+{{ if hugo.IsServer }}
+<script type="module" src="{{ $viteDevUrl }}/@vite/client"></script>
+<script type="module" src="{{ $viteDevUrl }}/assets/js/main.js"></script>
+{{ else }}
+{{- $buildTime := now.Unix -}}
+<link rel="stylesheet" href="/dist/main.css?v={{ $buildTime }}">
+<script type="module" src="/dist/main.js?v={{ $buildTime }}"></script>
+{{ end }}

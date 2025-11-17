@@ -14,12 +14,12 @@ export default defineConfig({
         main: './assets/js/main.js'
       },
       output: {
-        entryFileNames: '[name].js',
-        chunkFileNames: '[name].js',
-        assetFileNames: '[name].[ext]'
+        entryFileNames: '[name].[hash].js',
+        chunkFileNames: '[name].[hash].js',
+        assetFileNames: '[name].[hash].[ext]'
       }
     },
-    manifest: false
+    manifest: 'manifest.json'
   },
   server: {
     port: 5173,
