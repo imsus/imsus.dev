@@ -10,21 +10,15 @@ export default defineConfig({
     outDir: 'static/dist',
     emptyOutDir: false,
     rollupOptions: {
-      input: {
-        main: './assets/js/main.js'
-      },
-      output: {
-        entryFileNames: '[name].[hash].js',
-        chunkFileNames: '[name].[hash].js',
-        assetFileNames: '[name].[hash].[ext]'
-      }
+      input: './assets/js/main.js'
     },
-    manifest: 'manifest.json'
+    manifest: true
   },
   server: {
     port: 5173,
     strictPort: true,
     cors: true,
+    origin: 'http://localhost:1313',
     headers: {
       'Access-Control-Allow-Origin': '*'
     }

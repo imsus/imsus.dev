@@ -4,7 +4,22 @@
 <script type="module" src="{{ $viteDevUrl }}/@vite/client"></script>
 <script type="module" src="{{ $viteDevUrl }}/assets/js/main.js"></script>
 {{ else }}
+{{- $manifestFile := readFile "static/dist/.vite/manifest.json" -}}
+{{- if $manifestFile -}}
+{{- $manifest := $manifestFile | transform.Unmarshal -}}
+{{- $entryPoint := index $manifest "assets/js/main.js" -}}
+{{- if $entryPoint -}}
+{{- /* CSS files first (performance optimization) */ -}}
+{{- range $entryPoint.css -}}
+<link rel="stylesheet" href="/dist/{{ . }}">
+{{- end -}}
+{{- /* Then the main JavaScript file */ -}}
+<script type="module" src="/dist/{{ $entryPoint.file }}"></script>
+{{- end -}}
+{{ else }}
+{{/* Fallback if manifest not found */}}
 {{- $buildTime := now.Unix -}}
 <link rel="stylesheet" href="/dist/main.css?v={{ $buildTime }}">
 <script type="module" src="/dist/main.js?v={{ $buildTime }}"></script>
+{{ end -}}
 {{ end }}

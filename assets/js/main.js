@@ -1,3 +1,6 @@
+// Add the module preload polyfill at the beginning
+import 'vite/modulepreload-polyfill';
+
 // Import CSS to ensure Vite processes it
 import '../css/main.css';
 
