@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://example.org/sitemap.xml
+Sitemap: https://www.imsus.dev/sitemap.xml
